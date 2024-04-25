@@ -4,31 +4,25 @@ metadata:
   name: example-ingress
 spec:
   rules:
-    - host: 85.6.171.5:30002
+    - host: mediawiki.hopto.org
       http:
         paths:
           - pathType: Prefix
-            path: "/"
+            path: "/jira"
             backend:
               service:
                 name: jira
                 port:
                   number: 8080
-    - host: 85.6.171.5:30003
-      http:
-        paths:
-         - pathType: Prefix
-           path: "/"
-           backend:
-             service:
-               name: mediawiki
-               port:
-                 number: 80
-    - host: 85.6.171.5
-      http:
-        paths:
           - pathType: Prefix
-            path: "/"
+            path: "/mediawiki"
+            backend:
+              service:
+                name: mediawiki
+                port:
+                  number: 80
+          - pathType: Prefix
+            path: "/wordpress"
             backend:
               service:
                 name: wordpress
