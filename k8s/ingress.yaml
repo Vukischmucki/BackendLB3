@@ -2,44 +2,33 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: example-ingress
-  annotations:
-    kubernetes.io/ingress.class: public
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: mediawiki.hopto.org
+    - host: 85.6.171.5:30002
       http:
         paths:
           - pathType: Prefix
-            path: /grafana
-            backend:
-              service:
-                name: grafana
-                port:
-                  number: 3000
-          - pathType: Prefix
-            path: /jira
+            path: "/"
             backend:
               service:
                 name: jira
                 port:
                   number: 8080
+    - host: 85.6.171.5:30003
+      http:
+        paths:
+         - pathType: Prefix
+           path: "/"
+           backend:
+             service:
+               name: mediawiki
+               port:
+                 number: 80
+    - host: 85.6.171.5
+      http:
+        paths:
           - pathType: Prefix
-            path: /mediawiki
-            backend:
-              service:
-                name: mediawiki
-                port:
-                  number: 80
-          - pathType: Prefix
-            path: /prometheus
-            backend:
-              service:
-                name: prometheus
-                port:
-                  number: 9090
-          - pathType: Prefix
-            path: /wordpress
+            path: "/"
             backend:
               service:
                 name: wordpress
