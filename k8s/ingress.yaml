@@ -28,3 +28,10 @@ spec:
                 name: wordpress
                 port:
                   number: 80
+          - pathType: Prefix
+            path: "/wp-admin/install.php"
+            backend:
+              service:
+                name: wordpress
+                port:
+                  number: 80
