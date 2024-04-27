@@ -8,21 +8,21 @@ spec:
       http:
         paths:
           - pathType: Prefix
-            path: "/jira"  # <--- eindeutigen Pfad hinzugefügt
+            path: "/jira"  
             backend:
               service:
                 name: jira
                 port:
                   number: 8080
           - pathType: Prefix
-            path: "/mediawiki"  # <--- eindeutigen Pfad hinzugefügt
+            path: "/mediawiki"  
             backend:
               service:
                 name: mediawiki
                 port:
                   number: 80
           - pathType: Prefix
-            path: "/wordpress"  # <--- eindeutigen Pfad hinzugefügt
+            path: "/wordpress"  
             backend:
               service:
                 name: wordpress
