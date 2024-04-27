@@ -4,7 +4,6 @@ metadata:
   name: example-ingress
 spec:
   rules:
-    - host: 
       http:
         paths:
           - pathType: Prefix
