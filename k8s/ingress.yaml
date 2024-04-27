@@ -4,7 +4,7 @@ metadata:
   name: example-ingress
 spec:
   rules:
-    - host: mediawiki.hopto.org  # <--- geändert, um auf alle Dienste zu verweisen
+    - host: 
       http:
         paths:
           - pathType: Prefix
