@@ -22,7 +22,7 @@ spec:
                 port:
                   number: 80
           - pathType: Prefix
-            path: "/wordpress"
+            path: "/wordpress/(.*)"
             backend:
               service:
                 name: wordpress
