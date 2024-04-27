@@ -3,29 +3,28 @@ kind: Ingress
 metadata:
   name: example-ingress
 spec:
-  host: 
   rules:
+    - host: 
       http:
         paths:
           - pathType: Prefix
-            path: "/jira"  
+            path: "/jira"
             backend:
               service:
                 name: jira
                 port:
                   number: 8080
           - pathType: Prefix
-            path: "/mediawiki"  
+            path: "/mediawiki"
             backend:
               service:
                 name: mediawiki
                 port:
                   number: 80
           - pathType: Prefix
-            path: "/wordpress"  
+            path: "/wordpress"
             backend:
               service:
                 name: wordpress
                 port:
-                  number: 30001
-  # ...
+                  number: 80
