@@ -5,7 +5,6 @@ metadata:
 spec:
   rules:
     - host:
-        # Fügen Sie hier Ihre Host-Konfiguration hinzu, falls erforderlich
       http:
         paths:
           - pathType: Prefix
@@ -16,7 +15,7 @@ spec:
                 port:
                   number: 8080
           - pathType: Prefix
-            path: "/mediawiki(/|$)(.*)"
+            path: "/mediawiki/"
             backend:
               service:
                 name: mediawiki
@@ -30,7 +29,7 @@ spec:
                 port:
                   number: 80
           - pathType: Prefix
-            path: "/*"
+            path: "/resources/*"
             backend:
               service:
                 name: mediawiki
