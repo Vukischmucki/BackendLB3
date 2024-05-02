@@ -49,3 +49,10 @@ spec:
                 name: grafana
                 port:
                   number: 3000
+          - pathType: Prefix
+            path: "/login"
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 3000
