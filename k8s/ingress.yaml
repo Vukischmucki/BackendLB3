@@ -16,7 +16,7 @@ spec:
                 port:
                   number: 8080
           - pathType: Prefix
-            path: "/mediawiki/"
+            path: "/mediawiki(/|$)(.*)"
             backend:
               service:
                 name: mediawiki
