@@ -17,6 +17,13 @@ spec:
         image: atlassian/jira-software:latest
         ports:
         - containerPort: 8080
+        volumeMounts:
+        - name: jira-storage
+          mountPath: /var/atlassian/jira
+  volumes:
+  - name: jira-storage
+    persistentVolumeClaim:
+      claimName: jira-pvc
 
 ---
 
@@ -33,3 +40,42 @@ spec:
       port: 8080
       targetPort: 8080
       nodePort: 30002
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jira-pv
+spec:
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  local:
+    path: /mnt/disks/jira-pv
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: kubernetes.io/hostname
+          operator: In
+          values:
+          - server-proliant-dl380p-gen8
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jira-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
