@@ -29,7 +29,7 @@ spec:
                 port:
                   number: 80
           - pathType: Prefix
-            path: "/resources/assets/mediawiki.png"
+            path: "/resources/*"
             backend:
               service:
                 name: mediawiki
