@@ -29,6 +29,13 @@ spec:
                 port:
                   number: 80
           - pathType: Prefix
+            path: "/resources/assets/mediawiki.png"
+            backend:
+              service:
+                name: mediawiki
+                port:
+                  number: 80
+          - pathType: Prefix
             path: "/wordpress/(.*)"
             backend:
               service:
