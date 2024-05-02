@@ -15,14 +15,14 @@ spec:
                 port:
                   number: 8080
           - pathType: Prefix
-            path: "/mediawiki"
+            path: "/mediawiki/"
             backend:
               service:
                 name: mediawiki
                 port:
                   number: 80
           - pathType: Prefix
-            path: "/mw-config/index.php"
+            path: "/mw-config/index.php/"
             backend:
               service:
                 name: mediawiki
