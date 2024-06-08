@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minecraft-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minecraft
+  template:
+    metadata:
+      labels:
+        app: minecraft
+    spec:
+      containers:
+      
+name: minecraft-container
+      image: itzg/minecraft-server
+      ports:
+containerPort: 25565
+    env:
+name: EULA
+    value: "TRUE"
+name: RCON_PASSWORD
+  value: "RayCraft2023"  # Das Passwort, das mcadmin verwenden wird
+volumeMounts:
+name: minecraft-data
+mountPath: /data
+volumes:
+name: minecraft-data
+persistentVolumeClaim:
+  claimName: minecraft-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minecraft-service
+spec:
+  selector:
+    app: minecraft
+  ports:
+  
+name: minecraft
+  protocol: TCP
+  port: 25565
+  targetPort: 25565
+name: rcon
+protocol: TCP
+port: 25575  # RCON Port
+targetPort: 25575
+type: NodePort
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: minecraft-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    
+ReadWriteOnce
+hostPath:
+  path: /mnt/data/minecraft
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: minecraft-pvc
+spec:
+  accessModes:
+    
+ReadWriteOnce
+resources:
+  requests:
+    storage: 10Gi
